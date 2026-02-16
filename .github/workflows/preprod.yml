@@ -1,0 +1,35 @@
+name: "CI CD Pipeline for Auth Frontend Preprod"
+
+on:
+    workflow_dispatch:
+
+jobs:
+    ci: 
+        runs-on: ubuntu-latest
+        steps:
+            - name: Set up Node.js
+              uses: actions/setup-node@v4
+              with:
+                node-version: '20.x'
+
+            - name: "Check Node Installation"
+              run: | 
+                node --version
+                npm --version
+
+            - name: Checkout code
+              uses: actions/checkout@v2
+
+            - name: Install dependencies
+              run: npm install
+
+            - name: "List Directory"
+              run: ls
+
+            - name: Run EsLint
+              run: npm run lint
+
+            - name: Create Build 
+              run: npm run build
+
+              
